@@ -19,7 +19,7 @@ return new class extends Migration
             $table->double('amount');
             $table->string('remarks');
             $table->double('balance_before');
-            $table->string('balance_after');
+            $table->double('balance_after');
             $table->timestamps();
         });
     }

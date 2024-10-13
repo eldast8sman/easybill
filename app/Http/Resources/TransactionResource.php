@@ -22,7 +22,7 @@ class TransactionResource extends JsonResource
             'remarks' => $this->remarks,
             'balance_before' => $this->balance_before,
             'balance_after' => $this->balance_after,
-            'user' => $this->user
+            'user' => new TransactionUserResource($this->user)
         ];
     }
 }

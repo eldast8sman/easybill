@@ -116,7 +116,7 @@ class TransactionController extends Controller
                                 ->orderBy('created_at', 'asc')->get();
         if(!empty($later_transactions)){
             foreach($later_transactions as $later_tranx){
-                $prev_tranx = Transaction::where('user_id', $later_tranx->user_id)->where('created_at', '<', $later_tranx)
+                $prev_tranx = Transaction::where('user_id', $later_tranx->user_id)->where('created_at', '<', $later_tranx->created_at)
                                 ->orderBy('created_at', 'desc')->first();
                 if(empty($prev_tranx)){
                     $balance_before = 0;
@@ -129,6 +129,7 @@ class TransactionController extends Controller
                     $balance_after = $balance_before - $later_tranx->amount;
                 }
                 $later_tranx->update([
+                    'balance_before' => $balance_before,
                     'balance_after' => $balance_after
                 ]);
             }
